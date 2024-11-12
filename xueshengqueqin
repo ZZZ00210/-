@@ -1,0 +1,19 @@
+try {
+            statement = connection.prepareStatement(sql);
+            resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                int id = resultSet.getInt(1);
+                String number = resultSet.getString(2);
+                String name = resultSet.getString(3);
+                String gender = resultSet.getString(4);
+                Integer dormitoryId = resultSet.getInt(5);
+                String dormitoryName = resultSet.getString(6);
+                String state = resultSet.getString(7);
+                String createDate = resultSet.getString(8);
+                list.add(new Student(id, number, name, gender, dormitoryId, dormitoryName, state, createDate));
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } finally {
+            JDBCUtil.release(connection, statement, resultSet);
+        }
